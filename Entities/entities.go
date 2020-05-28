@@ -1,12 +1,12 @@
 package entities
 
-// User represents a user account
+// User is a user account
 type User struct {
-	id       int
+	ID       int
 	Username string
 }
 
-// Post represents a user account
+// Post is a user account
 type Post struct {
 	ID   int
 	User User

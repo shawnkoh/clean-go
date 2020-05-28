@@ -1,4 +1,4 @@
-package usecases
+package usecase
 
 // CreateUserInputBoundary represents an interactor that creates a User
 type CreateUserInputBoundary interface {
