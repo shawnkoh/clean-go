@@ -1,6 +1,6 @@
 package interfaceadapters
 
-import "../usecases"
+import "example/usecases"
 
 // UserPresenter is responsible for presenting a User
 type UserPresenter struct{}

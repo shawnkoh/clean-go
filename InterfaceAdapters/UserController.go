@@ -1,6 +1,6 @@
 package interfaceadapters
 
-import "../usecases"
+import "example/usecases"
 
 // UserController is a controller that controls users
 type UserController struct {
