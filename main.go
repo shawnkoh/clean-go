@@ -2,6 +2,8 @@ package main
 
 import (
 	"errors"
+	"example/database"
+	"example/user"
 	"net/http"
 	"time"
 
@@ -54,8 +56,25 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	data := &CreateUserRequest{}
 	render.Bind(r, data)
 
-	viewModel := UserController{}.CreateUser(data.username)
+	repository := database.UserRepository{}
+	interactor := user.NewCreateUserInteractor(repository)
+	presenter := user.Presenter{}
+	controller := user.NewController(interactor, presenter)
+
+	controller.CreateUser(data.username)
+	viewModel := presenter.ViewModel
 
 	render.Status(r, http.StatusCreated)
-	render.Render(w, r)
+	render.Render(w, r, CreateUserResponse{ID: viewModel.ID, Username: viewModel.Username})
+}
+
+// CreateUserResponse is the response given to the caller
+type CreateUserResponse struct {
+	ID       string
+	Username string
+}
+
+// Render conforms CreateUserResponse to render.Render interface
+func (response CreateUserResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
 }
