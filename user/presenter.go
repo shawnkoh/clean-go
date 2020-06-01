@@ -6,7 +6,8 @@ type createUserPresenter struct {
 	viewModel CreateUserViewModel
 }
 
-// Present translates the CreateUserOutputData into a ViewModel
+// Present implements the createUserOutputBoundary interface.
+// It translates CreateUserOutputData into a CreateUserViewModel
 func (presenter *createUserPresenter) Present(output createUserOutputData) {
 	presenter.viewModel = CreateUserViewModel{ID: output.id, Username: output.username}
 }
