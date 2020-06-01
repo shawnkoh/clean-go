@@ -7,6 +7,6 @@ type createUserPresenter struct {
 }
 
 // Present translates the CreateUserOutputData into a ViewModel
-func (presenter *createUserPresenter) Present(output createUserOutputData) {
+func (presenter createUserPresenter) Present(output createUserOutputData) {
 	presenter.viewModel = CreateUserViewModel{ID: output.id, Username: output.username}
 }
