@@ -2,23 +2,23 @@ package user
 
 // CreateUserInputBoundary represents an interactor that creates a User
 type CreateUserInputBoundary interface {
-	Handle(input CreateUserInputData, presenter CreateUserOutputBoundary)
+	Handle(input createUserInputData, presenter createUserOutputBoundary)
 }
 
 // CreateUserInputData represents the data required for creating a User
-type CreateUserInputData struct {
-	Username string
+type createUserInputData struct {
+	username string
 }
 
 // CreateUserOutputData represents the data returned from creating a User
-type CreateUserOutputData struct {
-	ID       string
-	Username string
+type createUserOutputData struct {
+	id       string
+	username string
 }
 
-// CreateUserOutputBoundary represents a presenter who consumes an output
-type CreateUserOutputBoundary interface {
-	Present(output CreateUserOutputData)
+// createUserOutputBoundary represents a presenter who consumes an output
+type createUserOutputBoundary interface {
+	Present(output createUserOutputData)
 }
 
 type createUserInteractor struct {
@@ -26,10 +26,10 @@ type createUserInteractor struct {
 }
 
 // Handle the CreateUserInputData by updating the entities
-func (interactor createUserInteractor) Handle(input CreateUserInputData, presenter CreateUserOutputBoundary) {
+func (interactor createUserInteractor) Handle(input createUserInputData, presenter createUserOutputBoundary) {
 	// TODO: Make repository throwable
-	user := interactor.repository.CreateUser(input.Username)
-	output := CreateUserOutputData{ID: user.ID, Username: user.Username}
+	user := interactor.repository.CreateUser(input.username)
+	output := createUserOutputData{id: user.ID, username: user.Username}
 	presenter.Present(output)
 }
 
