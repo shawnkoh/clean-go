@@ -20,7 +20,7 @@ type controller struct {
 func (controller controller) CreateUser(username string) CreateUserViewModel {
 	input := createUserInputData{username: username}
 	interactor := NewCreateUserInteractor(controller.repository)
-	presenter := createUserPresenter{}
+	presenter := &createUserPresenter{}
 	interactor.Handle(input, presenter)
 	return presenter.viewModel
 }
